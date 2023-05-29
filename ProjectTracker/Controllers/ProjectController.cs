@@ -3,6 +3,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Application.Project.Queries;
+using Application.Project.Commands;
+using Domain.Entities;
 
 public class ProjectController : ApiController
 {
@@ -21,30 +23,49 @@ public class ProjectController : ApiController
         }
     }
 
-    //private readonly IProjectData _projectData;
-    //private readonly IFeatureData _featureData;
-    //private readonly IIssueData _issueData;
-    //public ProjectController(IProjectData projectData, IFeatureData featureData, IIssueData issueData)
-    //{
-    //    _projectData = projectData;
-    //    _featureData = featureData;
-    //    _issueData = issueData;
-    //}
-    //public Task<IActionResult> Index()
-    //{
-    //    var results = await _projectData.GetProjects();
-    //    return View(results.ToList());
-    //}
-}
 
-internal interface IIssueData
-{
-}
+    [HttpPost]
+    [Route("api/project/post")]
+    public async Task<IActionResult> Post(Project _project)
+    {
+        try
+        {
+            var results = await this.Mediator.Send(new AddProjectCommand() { Project = _project});
+            return this.Ok(results);
+        }
+        catch (Exception ex)
+        {
+            return this.Problem(ex.Message);
+        }
+    }
 
-internal interface IFeatureData
-{
-}
+    [HttpPut]
+    [Route("api/project/put")]
+    public async Task<IActionResult> Put(Project _project)
+    {
+        try
+        {
+            var results = await this.Mediator.Send(new EditProjectCommand() { Project = _project });
+            return this.Ok(results);
+        }
+        catch (Exception ex)
+        {
+            return this.Problem(ex.Message);
+        }
+    }
 
-internal interface IProjectData
-{
+    [HttpDelete]
+    [Route("api/project/delete")]
+    public async Task<IActionResult> Delete(int _id)
+    {
+        try
+        {
+            var results = await this.Mediator.Send(new DeleteProjectCommand() { ProjectId = _id });
+            return this.Ok(results);
+        }
+        catch (Exception ex)
+        {
+            return this.Problem(ex.Message);
+        }
+    }
 }
