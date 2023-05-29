@@ -9,8 +9,7 @@
     <ProjectGuid>{951628f1-072f-41ae-9748-7bc4e82bdde3}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>ProjectTrackerDatabase</RootNamespace>
     <AssemblyName>ProjectTrackerDatabase</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
@@ -48,7 +47,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -93,6 +91,7 @@
     <Build Include="StoredProcedures\spFeature_Update.sql" />
     <Build Include="StoredProcedures\spPriority_GetAllByProjectId.sql" />
     <Build Include="StoredProcedures\spPriority_Get.sql" />
+    <Build Include="Tables\Log.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Deployment\ProjectTracker.PostDeployment.sql" />

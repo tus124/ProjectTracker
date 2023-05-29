@@ -23,6 +23,7 @@ BEGIN
 			,ERROR_LINE() AS ErrorLine  
 			,ERROR_MESSAGE() AS ErrorMessage;  
 
+			insert into dbo.Log values('Error', (select ERROR_PROCEDURE()), (select ERROR_MESSAGE()), getdate());
 
 		throw;
 	end catch

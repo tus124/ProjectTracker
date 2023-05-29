@@ -11,4 +11,9 @@ public interface IProjectRepository
 {
     IList<Project> GetAllProjects();
 
+    ProjectResults AddProject(Project project);
+
+    ProjectResults EditProject(Project project);
+
+    ProjectResults DeleteProject(int id);
 }
